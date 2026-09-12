@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUXVITA STUDIO | Visual Archive</title>
+    <link rel="icon" type="image/png" href="main page/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #f0f0f2;
+            --text-muted: #7a7a85;
+            --accent: #ffffff;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); /* Dibikin lebih lambat & smooth */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0px 0 0; 
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s;
+        }
+
+        .preloader-text {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            animation: breathe 2.5s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        .preloader-hidden {
+            opacity: 0 !important;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .hero, section, .header-section, .video-grid, .masonry-grid, .bio-container, footer {
+            padding-left: 5%;
+            padding-right: 5%;
+            box-sizing: border-box;
+        }        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(5, 5, 5, 0); 
+            backdrop-filter: blur(0px); 
+            -webkit-backdrop-filter: blur(0px); 
+            transition: background-color 0.5s ease, backdrop-filter 0.5s ease, padding 0.5s ease;
+        }
+        
+        nav.nav-scrolled {
+            background-color: rgba(5, 5, 5, 0.85); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            padding: 1rem 5%; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 35px; 
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .nav-logo span {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+            filter: brightness(1) grayscale(0%) !important;
+        }
+
+        .about-image:hover span {
+            color: var(--accent) !important;
+        }
+
+        section {
+            padding: 150px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 7vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 0; 
+            opacity: 0.35; 
+            object-fit: cover;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem; 
+        }
+
+        .card {
+            background-color: transparent; 
+            border-radius: 0;
+            overflow: hidden;
+            border: none;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-media {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-color: #0a0a0c;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-media img, .card-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+            filter: grayscale(20%);
+        }
+
+        .card:hover .card-media img, .card:hover .card-media video {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .card-info {
+            padding: 1.5rem 0 0 0;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-top: 0.2rem;
+            letter-spacing: 1px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 2px;
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 1.2rem 4rem;
+            background-color: transparent;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-family: var(--font-heading);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            background-color: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.2);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; gap: 3rem; }
+            .nav-links { display: none; }
+            .grid-container { grid-template-columns: 1fr; }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: var(--text-muted);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent);
+            color: #050505;
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .partner-section {
+            margin-top: 3.5rem;
+            padding: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .partner-label {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .partner-logos img {
+            height: 100px;
+            width: auto;
+            opacity: 0.6; 
+            transition: var(--transition);
+        }
+
+        .partner-logos img:hover {
+            opacity: 1;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <span class="preloader-text">LUXVITA</span>
+    </div>
+
+    <nav>
+        <a href="#home" class="nav-logo">
+            <img src="Main Page/logo.png" alt="Logo">
+            <span>LUXVITA</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#work">Archive</a></li>
+            <li><a href="#about">Director</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="Main Page/showcase.mp4" type="video/mp4">
+        </video>
+    
+        <div style="position: relative; z-index: 1;" class="fade-in">
+            <h1 class="hero-title">Visual Storytelling</h1>
+            <p class="hero-subtitle">Captured through a cinematic lens.</p>
+        </div>
+    </section>
+    
+    <section id="work">
+        <h2 class="section-title fade-in">The Archive</h2>
+        <div class="grid-container">
+
+            <a href="documentary.html" class="card fade-in">
+                <div class="card-media">
+                    <img src="Main Page/Karya 1.png" alt="Time Machine Recap">
+                </div>
+                <div class="card-info">
+                    <p style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 3px;">DOCUMENTARY</p>
+                    <h3 class="card-title">Time Machine Recap</h3>
+                </div>
+            </a>
+
+            <a href="astrophotography.html" class="card fade-in">
+                <div class="card-media">
+                    <img src="Main Page/karya 2.JPG" alt="Lunar Details">
+                </div>
+                <div class="card-info">
+                    <p style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 3px;">ASTROPHOTOGRAPHY</p>
+                    <h3 class="card-title">Lunar Details</h3>
+                </div>
+            </a>
+
+            <a href="photography.html" class="card fade-in">
+                <div class="card-media">
+                    <img src="Main Page/karya 3.jpg" alt="Visual Exploration">
+                </div>
+                <div class="card-info">
+                    <p style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 3px;">PHOTOGRAPHY</p>
+                    <h3 class="card-title">Visual Exploration</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <a href="biography.html" class="about-image fade-in" style="display: block; overflow: hidden; border-radius: 2px; cursor: pointer;">
+                <img src="Main Page/Biography.JPG" alt="Sulaiman" style="width: 100%; display: block; transition: transform 0.8s ease, filter 0.8s ease; filter: brightness(0.7) grayscale(20%);">
+                <span style="display: block; text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;">Read the Journal &rarr;</span>
+            </a>
+            
+            <div class="about-text fade-in">
+                <h3>Hi, I'm Sulaiman.</h3>
+                <p>Welcome to my visual exhibition. I’ve always believed that the most compelling stories don't need words, they are felt through shadows, cinematic grading, and raw, unscripted moments.</p>
+                <p>This gallery is a reflection of the world as I perceive it, sometimes melancholic, often complex, but always honest. Take your time to explore the frames.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="fade-in">
+        <div class="contact-content">
+            <p>Let's create something meaningful.</p>
+            
+            <div class="social-links">
+                <a href="mailto:luxvitastudio@gmail.com" class="social-icon" title="Send Email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+
+                <a href="https://instagram.com/sulaiman_2910" target="_blank" class="social-icon" title="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="partner-section fade-in">
+                <div class="partner-label">Collaborative</div>
+                
+                <div class="partner-logos">
+                    <a href="arcturus.html">
+                        <img src="Main Page/Logo Arcturus.png" alt="Arcturus Logo">
+                    </a>
+                    
+                    <!-- Logo Ekspedisi dibungkus link menuju ekspedisi.html -->
+                    <a href="ekspedisi.html">
+                        <img src="Main Page/Logo Ekspedisi.png" alt="Ekspedisi Logo">
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 LUXVITA STUDIO</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled'); 
+            }
+        });
+
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.15, 
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(function() {
+                preloader.classList.add('preloader-hidden');
+            }, 2000); 
+        });
+        
+    </script>
+
+</body>
+</html>

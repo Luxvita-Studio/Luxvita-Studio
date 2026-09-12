@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ekspedisi | Collaborative Brand</title>
+    <link rel="icon" type="image/png" href="main page/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #f0f0f2;
+            --text-muted: #7a7a85;
+            --accent: #ffffff;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 0rem;
+            padding: 4rem 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.2);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s;
+        }
+
+        .preloader-text {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            animation: breathe 2.5s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        .preloader-hidden {
+            opacity: 0 !important;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        nav {
+            padding: 2rem 5%;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover { color: var(--accent); }
+
+        .brand-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 180px 5% 40px;
+        }
+
+        .brand-logo {
+            height: 150px;
+            width: auto;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .brand-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 10px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .brand-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 900px;
+            margin-bottom: 4rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="preloader">
+        <span class="preloader-text">LUXVITA</span>
+    </div>
+
+
+    <nav>
+        <a href="index.html" class="back-btn">&larr; Back to Gallery</a>
+    </nav>
+
+    <div class="brand-container">
+        <img src="Main Page/Logo Ekspedisi.png" alt="Ekspedisi" class="brand-logo">
+        
+        <h1 class="brand-title">Ekspedisi pulang kepada alam</h1>
+        
+        <p class="brand-desc">
+            Ekspedisi Pulang Kepada Alam is a collaborative project between LUXVITA and ARCTURUS, born from a shared desire to step beyond the familiar and rediscover the world through the places that remain untouched. Through each journey, we explore the landscapes that surround us, document what we encounter, and share the beauty of nature with those who may never have the chance to witness it themselves.
+        </p>
+
+        <p class="brand-desc">
+            But this expedition is not simply about reaching a destination. It is about returning—to the silence beneath the trees, to the wind that asks nothing of us, and to the feeling of standing somewhere vast enough to remind us how small we are. Nature was never truly something separate from us. Somewhere along the way, we simply became distant from it.
+        </p>
+
+        <p class="brand-desc">
+            With cameras in hand, we document each journey as honestly as we can—not to create a perfect picture of nature, but to preserve a glimpse of what it felt like to be there. LUXVITA and ARCTURUS may have different perspectives, but through this expedition, they share the same direction: to explore, to document, and to bring the beauty of the world a little closer to everyone.
+        </p>
+
+        <p class="brand-desc">
+            The expedition may have begun with the two of us, but the journey was never meant to belong only to us. Anyone willing to walk, wonder, and wander is welcome to come along.
+        </p>
+
+    </div>
+
+    
+    <footer>
+        <p>&copy; 2026 LUXVITA STUDIO</p>
+    </footer>
+    
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(function() {
+                preloader.classList.add('preloader-hidden');
+            }, 2000); 
+        });
+
+    </script>
+
+</body>
+</html>

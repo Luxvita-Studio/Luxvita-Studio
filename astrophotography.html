@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrophotography | LUXVITA STUDIO</title>
+    <link rel="icon" type="image/png" href="main page/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #f0f0f2;
+            --text-muted: #7a7a85;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --transition: all 0.5s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 60px 5% 0px;
+            overflow-x: hidden;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s;
+        }
+
+        .preloader-text {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            animation: breathe 2.5s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        .preloader-hidden {
+            opacity: 0 !important;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .header-section {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
+            transform: translateX(-5px);
+        }
+
+        .category-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 2rem;
+        }
+
+        .category-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .masonry-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            column-count: 3;
+            column-gap: 2rem;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            position: relative;
+            cursor: zoom-in;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+            filter: grayscale(15%) brightness(0.9);
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.03);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px; right: 40px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-family: sans-serif;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 8rem;
+            padding: 4rem 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.2);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 992px) {
+            .masonry-grid { column-count: 2; }
+        }
+        @media (max-width: 600px) {
+            .masonry-grid { column-count: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <span class="preloader-text">LUXVITA</span>
+    </div>
+
+    <div class="header-section fade-in">
+        <a href="index.html" class="back-btn">← Return to Archive</a>
+        <h1 class="category-title">Astrophotography</h1>
+        <p class="category-desc">A deep dive into the night sky. Capturing intricate lunar details and the quiet vastness of space.</p>
+    </div>
+
+    <div class="masonry-grid">
+        
+        <div class="masonry-item fade-in">
+            <img src="Page Astrofotography/Astrofotografi 1.jpg" alt="Lunar Detail 1">
+        </div>
+
+        <div class="masonry-item fade-in">
+            <img src="Page Astrofotography/Astrofotografi 2.jpg" alt="Milky Way">
+        </div>
+
+        <div class="masonry-item fade-in">
+            <img src="Page Astrofotography/Astrofotografi 3.jpg" alt="Lunar Detail 2">
+        </div>
+
+        <div class="masonry-item fade-in">
+            <img src="Page Astrofotography/Astrofotografi 4.jpg" alt="Deep Space">
+        </div>
+
+        <div class="masonry-item fade-in">
+            <img src="Page Astrofotography/Astrofotografi 5.jpg" alt="Stars">
+        </div>
+
+        <div class="masonry-item fade-in">
+            <img src="Page Astrofotography/Astrofotografi 6.png" alt="Deep Space">
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img src="" alt="Fullscreen Image" id="lightbox-img">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 LUXVITA STUDIO</p>
+    </footer>
+
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
+        const galleryImages = document.querySelectorAll('.masonry-item img');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if(e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(function() {
+                preloader.classList.add('preloader-hidden');
+            }, 2000); 
+        });
+
+    </script>
+
+</body>
+</html>

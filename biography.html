@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director's Journal | LUXVITA STUDIO</title>
+    <link rel="icon" type="image/png" href="main page/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #f0f0f2;
+            --text-muted: #7a7a85;
+            --accent: #ffffff;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --transition: all 0.5s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 60px 5% 0px;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s;
+        }
+
+        .preloader-text {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            animation: breathe 2.5s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        .preloader-hidden {
+            opacity: 0 !important;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
+            transform: translateX(-5px);
+        }
+
+        .bio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .bio-image {
+            position: sticky;
+            top: 100px;
+        }
+
+        .bio-image img {
+            width: 100%;
+            border-radius: 2px;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .bio-header {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 2rem;
+        }
+
+        .bio-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .bio-quote {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin: 3rem 0;
+            padding-left: 2rem;
+            border-left: 2px solid var(--accent);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 8rem;
+            padding: 4rem 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.2);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .bio-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .bio-image {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <span class="preloader-text">LUXVITA</span>
+    </div>
+
+
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <a href="index.html" class="back-btn fade-in">← Back to Exhibition</a>
+    </div>
+
+    <div class="bio-container">
+        
+        <div class="bio-image fade-in">
+            <img src="Page Biography/Photo.jpg" alt="Sulaiman - Director">
+        </div>
+
+        <div class="bio-content fade-in">
+            <h1 class="bio-header">The Director's Note.</h1>
+            
+            <p>I never really planned to become a filmmaker.</p>
+            
+            <p>My path started somewhere completely different. For a long time, I was simply trying to figure out where I belonged, moving through things that had little to do with cameras, editing, or visual storytelling. Somewhere along the way, I found myself drawn to creating images, not because I wanted to tell people who I was, but because I wanted to keep the things I didn't want to forget.</p>
+
+            <p>That is, in many ways, where LUXVITA STUDIO began.</p>
+
+            <p>I have always been fascinated by moments that don't ask to be noticed. The quiet after a long journey. The light falling through the trees. A mountain disappearing into the fog. The atmosphere of a place that feels different when you finally stand there yourself. A group of people laughing when nobody is trying to record it. Small things, perhaps, but somehow those are the moments that stay.</p>
+
+            <p>I don't think a camera is only a tool for making something look beautiful. To me, it is a way of paying attention.</p>
+
+            <p>Much of what I create is shaped by the things I love outside of filmmaking. Music has always been a huge part of how I see and feel things, from the weight and atmosphere of Sleep Token and Bad Omens, to the quieter melancholy of Novo Amor and the emotional textures I find in other music I listen to. Books, films, mountains, the night sky, long conversations, and even the places I've been to all leave their own traces.</p>
+
+            <p>Sometimes they find their way into a color grade. Sometimes into the pacing of an edit. Sometimes into a frame that I keep for no particular reason other than the fact that it feels right.</p>
+
+            <blockquote class="bio-quote">
+                "Maybe the point isn't to preserve the moment exactly as it was, but to preserve how it felt to be there."
+            </blockquote>
+
+            <p>LUXVITA is not meant to be a perfect record of what I've done. It is more like an archive of what I've seen, what I've felt, and the things I've been fortunate enough to experience along the way.</p>
+
+            <p>From quiet photographs to cinematic edits, from documenting a journey to simply pointing a camera at something that caught my attention, every piece is a small fragment of that journey.</p>
+
+            <p>I am still learning. Still wandering. Still figuring out what I want to say.</p>
+
+            <p>For now, I just want to keep looking.</p>
+
+            <p>And when something feels worth remembering, I want to keep a frame of it.</p>
+            
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 LUXVITA STUDIO</p>
+    </footer>
+
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(function() {
+                preloader.classList.add('preloader-hidden');
+            }, 2000); 
+        });
+
+    </script>
+
+</body>
+</html>
